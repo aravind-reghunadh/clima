@@ -26,11 +26,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
         'https://samples.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=b1b15e88fa797225412429c1c50c122a1');
     if (response.statusCode == 200) {
       String data = response.body;
-      var longitude = jsonDecode(data)['coord']['lon'];
-      var weatherdescription = jsonDecode(data)['weather'][0]['description'];
-      var temperature = jsonDecode(data)['main']['temp'];
-      var condition = jsonDecode(data)['weather'][0]['id'];
-      var cityName = jsonDecode(data)['weather'][0]['id'];
+
+      var decodedData = jsonDecode(data);
+      int temperature = decodedData['main']['temp'];
+      double condition = decodedData['weather'][0]['id'];
+      String cityName = decodedData['weather'][0]['id'];
+      print(temperature);
+      print(condition);
+      print(cityName);
     } else {
       print(response.statusCode);
     }
